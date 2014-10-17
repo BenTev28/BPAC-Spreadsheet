@@ -78,41 +78,41 @@ Public Sub itemInit()
     End With
     subtotalList.List = tbl.TotalsRowRange.Value
     subtotalList.List(0, 5) = (Format(Val(subtotalList.List(0, 5)), "$#,##0.00"))
-    adj.DataBodyRange(1, 6).Value = tbl.TotalsRowRange(1, 6) * 0.06
-    adj.DataBodyRange(2, 6).Value = tbl.TotalsRowRange(1, 6) * 0.2
-    adj.DataBodyRange(3, 6).Value = (tbl.TotalsRowRange(1, 6) + adj.DataBodyRange(1, 6) + adj.DataBodyRange(2, 6)) * 0.2
-    adj.DataBodyRange(4, 6).Value = -((tbl.TotalsRowRange(1, 6) + adj.DataBodyRange(1, 6) + adj.DataBodyRange(2, 6) + adj.DataBodyRange(3, 6)) * 0.15)
+    adj.DataBodyRange(1, 6).Value = tbl.TotalsRowRange(1, 6) * adj.DataBodyRange(1, 2)
+    adj.DataBodyRange(2, 6).Value = tbl.TotalsRowRange(1, 6) * adj.DataBodyRange(2, 2)
+    adj.DataBodyRange(3, 6).Value = (tbl.TotalsRowRange(1, 6) + adj.DataBodyRange(1, 6) + adj.DataBodyRange(2, 6)) * adj.DataBodyRange(3, 2)
+    adj.DataBodyRange(4, 6).Value = -((tbl.TotalsRowRange(1, 6) + adj.DataBodyRange(1, 6) + adj.DataBodyRange(2, 6) + adj.DataBodyRange(3, 6)) * adj.DataBodyRange(4, 2))
     With adjustmentList
         .Clear
         If Select_DC.Value = True Then
             .addItem
-            .List(0, 0) = adj.DataBodyRange(1, 1)
+            .List(0, 0) = adj.DataBodyRange(1, 1) & " (" & Format(adj.DataBodyRange(1, 2), "0%") & ")"
             .List(0, 5) = adj.DataBodyRange(1, 6)
             .addItem
             .List(1, 0) = "TOTAL"
             .List(1, 5) = (adj.DataBodyRange(1, 6).Value + tbl.TotalsRowRange(1, 6).Value)
         ElseIf Select_P.Value = True Then
             .addItem
-            .List(0, 0) = adj.DataBodyRange(1, 1)
+            .List(0, 0) = adj.DataBodyRange(1, 1) & " (" & Format(adj.DataBodyRange(1, 2), "0%") & ")"
             .List(0, 5) = adj.DataBodyRange(1, 6)
             .addItem
-            .List(1, 0) = adj.DataBodyRange(2, 1)
+            .List(1, 0) = adj.DataBodyRange(2, 1) & " (" & Format(adj.DataBodyRange(2, 2), "0%") & ")"
             .List(1, 5) = adj.DataBodyRange(2, 6)
             .addItem
-            .List(2, 0) = adj.DataBodyRange(3, 1)
+            .List(2, 0) = adj.DataBodyRange(3, 1) & " (" & Format(adj.DataBodyRange(3, 2), "0%") & ")"
             .List(2, 5) = adj.DataBodyRange(3, 6)
             .addItem
             .List(3, 0) = "TOTAL"
             .List(3, 5) = (adj.DataBodyRange(1, 6).Value + adj.DataBodyRange(2, 6).Value + adj.DataBodyRange(3, 6) + tbl.TotalsRowRange(1, 6).Value)
         ElseIf Select_NFP.Value = True Then
             .addItem
-            .List(0, 0) = adj.DataBodyRange(1, 1)
+            .List(0, 0) = adj.DataBodyRange(1, 1) & " (" & Format(adj.DataBodyRange(1, 2), "0%") & ")"
             .List(0, 5) = adj.DataBodyRange(1, 6)
             .addItem
-            .List(1, 0) = adj.DataBodyRange(2, 1)
+            .List(1, 0) = adj.DataBodyRange(2, 1) & " (" & Format(adj.DataBodyRange(2, 2), "0%") & ")"
             .List(1, 5) = adj.DataBodyRange(2, 6)
             .addItem
-            .List(2, 0) = adj.DataBodyRange(3, 1)
+            .List(2, 0) = adj.DataBodyRange(3, 1) & " (" & Format(adj.DataBodyRange(3, 2), "0%") & ")"
             .List(2, 5) = adj.DataBodyRange(3, 6)
             .addItem
             .List(3, 5) = adj.DataBodyRange(4, 6)
