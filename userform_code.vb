@@ -4,6 +4,7 @@ Dim FILENAME As String
 
 
 
+
 Public Sub scheduleInit()
     Dim sched As ListObject
     Dim i As Integer
@@ -694,8 +695,13 @@ Private Sub saveAs_Click()
     '        MsgBox (saveDate)
         End If
     Next
-        
+    Dim BAD_CHAR
+    BAD_CHAR = Array("!", "@", "#", "$", "%", "^", "&", "*", "{", "}", "=", "+", "/", "<", ">", ",", ".", "?", "\", "|", "`")
     FILENAME = Format(saveDate, "yy") & "-" & Format(saveDate, "mm") & "-" & Format(saveDate, "dd") & "_" & Replace(compNameField.Value, " ", "-") & "_" & Replace(eventNameField, " ", "-")
+    For Each element In BAD_CHAR
+        FILENAME = Replace(FILENAME, CStr(element), "")
+    Next
+    
     ' MsgBox (DB_PATH & FILENAME)
     ThisWorkbook.saveAs DB_PATH & FILENAME, FileFormat:=52
     'MsgBox ("E:\Projects\" & Format(saveDate, "yy") & "-" & Format(saveDate, "mm") & "-" & Format(saveDate, "dd") & "_" & Replace(compNameField.Value, " ", "-") & "_" & Replace(eventNameField, " ", "-"))
