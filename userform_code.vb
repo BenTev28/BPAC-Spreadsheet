@@ -44,8 +44,10 @@ Public Sub itemInit()
     tbl = Worksheets(4).ListObjects("costItems")
     adj = Worksheets(4).ListObjects("adjTable")
 
-
-    itemDateField.Value = ""
+    Page = MultiPage1.Value
+    MultiPage1.Value = 2
+    itemDateField.Value = Date
+    MultiPage1.Value = Page
     itemSelect.Value = ""
     itemSelect.Text = ""
     qtyField.Value = ""
@@ -296,9 +298,6 @@ Private Sub hrsField_Change()
     If Not IsNumeric(hrsField.Value) And Not hrsField.Value = "" Then
         MsgBox("Please enter the number of hours in a numeric format")
         hrsField.Value = 0
-        hrsInc.Value = 0
-    ElseIf Not hrsField.Value = "" Then
-        hrsInc.Value = hrsField.Value
     End If
 
 End Sub
@@ -967,6 +966,9 @@ Private Sub scheduleCreate_Click()
 
 End Sub
 
+Private Sub scheduleDate_CallbackKeyDown(ByVal KeyCode As Integer, ByVal Shift As Integer, ByVal CallbackField As String, CallbackDate As Date)
+
+End Sub
 
 Private Sub scheduleDelete_Click()
 
@@ -991,6 +993,7 @@ Private Sub scheduleDelete_Click()
 
     End With
 End Sub
+
 Private Sub scheduleEdit_Click()
     Dim schedTbl As ListObject
     Dim thisRow As ListRow
@@ -1001,7 +1004,11 @@ Private Sub scheduleEdit_Click()
     thisRow = schedTbl.ListRows(rowNum)
     thisRow.Range = Array(scheduleDate.Value, scheduleStart.Value, scheduleEnd.Value, schedName.Value)
     Call scheduleInit()
+
 End Sub
+
+
+
 Private Sub scheduleList_Click()
     Dim index As Integer
     With scheduleList
@@ -1046,10 +1053,10 @@ Private Sub summaryField_Change()
     ovwData = Worksheets("OverviewSheet").ListObjects("OverviewData")
     ovwData.ListColumns("Summary").DataBodyRange = summaryField.Value
 End Sub
+
 Private Sub taxIDNum_Change()
     [OverviewData[Tax ID]].Value = taxIDNum.Value
 End Sub
-
 
 Private Sub techNotes_Change()
     Dim ovwData As ListObject
@@ -1068,9 +1075,10 @@ Private Sub UserForm_Initialize()
     tbl = Worksheets(4).ListObjects("costItems")
     adj = Worksheets(4).ListObjects("adjTable")
 
+    MultiPage1.Value = 1
 scheduleDate.Value = Date
-    scheduleStart.Value = "12:00:00"
-    scheduleEnd.Value = "12:00:00"
+    scheduleStart.Value = "12:00"
+    scheduleEnd.Value = "12:00"
     scheduleStart.CustomFormat = "hh:mm tt"
     scheduleEnd.CustomFormat = "hh:mm tt"
     scheduleStart.UpDown = True
@@ -1081,8 +1089,16 @@ scheduleDate.Value = Date
         For Each row In [Venues].Rows
 
             .Controls(row.Columns(6).Value).Value = row.Columns(3)
-            .Controls(row.Columns(2) & "Start").Value = row.Columns(4)
-            .Controls(row.Columns(2) & "End").Value = row.Columns(5)
+            If Not row.Columns(4).Value = vbNullString Then
+                .Controls(row.Columns(2) & "Start").Value = row.Columns(4)
+            Else
+            .Controls(row.Columns(2) & "Start").Value = Date
+            End If
+            If Not row.Columns(5) = vbNullString Then
+                .Controls(row.Columns(2) & "End").Value = row.Columns(5)
+            Else
+            .Controls(row.Columns(2) & "End").Value = Date
+            End If
 
         Next
 
@@ -1703,6 +1719,7 @@ End Sub
 Private Sub vmInc_Change()
     numVM.Value = vmInc.Value
 End Sub
+
 Private Sub Website_Change()
     [OverviewData[URL]].Value = Website.Value
 End Sub
