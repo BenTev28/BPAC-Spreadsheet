@@ -966,9 +966,6 @@ Private Sub scheduleCreate_Click()
 
 End Sub
 
-Private Sub scheduleDate_CallbackKeyDown(ByVal KeyCode As Integer, ByVal Shift As Integer, ByVal CallbackField As String, CallbackDate As Date)
-
-End Sub
 
 Private Sub scheduleDelete_Click()
 
@@ -993,7 +990,17 @@ Private Sub scheduleDelete_Click()
 
     End With
 End Sub
+Private Sub scheduleEdit_Click()
+    Dim schedTbl As ListObject
+    Dim thisRow As ListRow
+    schedTbl = Worksheets("Schedule").ListObjects("eventItems")
 
+    rowNum = scheduleList.ListIndex + 1
+
+    thisRow = schedTbl.ListRows(rowNum)
+    thisRow.Range = Array(scheduleDate.Value, scheduleStart.Value, scheduleEnd.Value, schedName.Value)
+    Call scheduleInit()
+End Sub
 Private Sub scheduleList_Click()
     Dim index As Integer
     With scheduleList
