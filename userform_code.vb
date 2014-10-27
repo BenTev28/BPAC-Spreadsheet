@@ -302,9 +302,12 @@ Private Sub hrsField_Change()
 
 End Sub
 
-Private Sub hrsInc_Change()
-    hrsField.Value = hrsInc.Value
+Private Sub hrsInc_SpinUp()
+    hrsField.Value = hrsField.Value + 1
 
+End Sub
+Private Sub hrsInc_SpinDown()
+    hrsField.Value = hrsField.Value - 1
 End Sub
 
 Private Sub intermissionLength_Change()
