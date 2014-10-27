@@ -1092,6 +1092,7 @@ scheduleDate.Value = Date
     .Controls("contact2NameField").Value = [OverviewData[Secondary Contact Name]].Value
     .Controls("contact2PhoneField").Value = [OverviewData[Secondary Contact Phone]].Value
     .Controls("contact2EmailField").Value = [OverviewData[Secondary Contact Email]].Value
+    Website.Value = [OverviewData[URL]].Value
     runTime.Value = [OverviewData[Run Time]].Value
     intermissionLength.Value = [OverviewData[Intermission]].Value
     summaryField.Value = [OverviewData[Summary]].Value
@@ -1698,4 +1699,7 @@ End Sub
 
 Private Sub vmInc_Change()
     numVM.Value = vmInc.Value
+End Sub
+Private Sub Website_Change()
+    [OverviewData[URL]].Value = Website.Value
 End Sub
