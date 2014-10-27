@@ -29,6 +29,7 @@ Public Sub scheduleInit()
                 .List(i - 2, 1) = Format(addStart, "hh:mm am/pm")
                 .List(i - 2, 2) = Format(addEnd, "hh:mm am/pm")
                 .List(i - 2, 3) = addName
+                .List(i - 2, 4) = Format(addEnd - addStart, "hh:mm")
             End With
 
         Next
