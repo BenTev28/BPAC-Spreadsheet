@@ -466,7 +466,7 @@ Private Sub overviewCreate_Click()
 
 
     For i = 1 To data.Rows.Count
-        If Not data.Cells(i, 4) = vbNullString And Not data.Cells(i, 4) > firstDate Then
+        If Not data.Cells(i, 3) = "FALSE" And Not data.Cells(i, 4) = vbNullString And Not data.Cells(i, 4) > firstDate Then
             firstDate = data.Cells(i, 4)
         End If
         If Not data.Cells(i, 5) = vbNullString And Not data.Cells(i, 5) < lastDate Then
@@ -696,7 +696,7 @@ Private Sub saveAs_Click()
     saveDate = Format("1/1/9999", "dd/mm/yyyy")
 
     For i = 1 To data.Rows.Count
-        If Not data.Cells(i, 4) = vbNullString And Not data.Cells(i, 4) > saveDate Then
+        If Not data.Cells(i, 3) = "FALSE" And Not data.Cells(i, 4) = vbNullString And Not data.Cells(i, 4) > saveDate Then
             saveDate = data.Cells(i, 4)
             '        MsgBox (saveDate)
         End If
@@ -1142,6 +1142,8 @@ scheduleDate.Value = Date
 End Sub
 
 Private Sub erhStart_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With erhStart
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1152,9 +1154,12 @@ Private Sub erhStart_Exit(ByVal Cancel As MSForms.ReturnBoolean)
             [Venues[StartDate]].Rows(1).Value = .Value
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 
 Private Sub ntStart_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPag1.Value
+    MultiPage1.Value = 0
     With ntStart
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1165,8 +1170,11 @@ Private Sub ntStart_Exit(ByVal Cancel As MSForms.ReturnBoolean)
              [Venues[StartDate]].Rows(2).Value = .Value
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 Private Sub mhStart_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With mhStart
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1177,8 +1185,10 @@ Private Sub mhStart_Exit(ByVal Cancel As MSForms.ReturnBoolean)
              [Venues[StartDate]].Rows(3).Value = .Value
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 Private Sub bwStart_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
     With bwStart
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1189,8 +1199,11 @@ Private Sub bwStart_Exit(ByVal Cancel As MSForms.ReturnBoolean)
              [Venues[StartDate]].Rows(4).Value = .Value
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 Private Sub rsStart_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With rsStart
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1201,8 +1214,11 @@ Private Sub rsStart_Exit(ByVal Cancel As MSForms.ReturnBoolean)
              [Venues[StartDate]].Rows(5).Value = .Value
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 Private Sub b2Start_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With b2Start
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1213,8 +1229,11 @@ Private Sub b2Start_Exit(ByVal Cancel As MSForms.ReturnBoolean)
              [Venues[StartDate]].Rows(6).Value = .Value
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 Private Sub b3Start_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With b3Start
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1225,8 +1244,11 @@ Private Sub b3Start_Exit(ByVal Cancel As MSForms.ReturnBoolean)
              [Venues[StartDate]].Rows(7).Value = .Value
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 Private Sub srStart_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With srStart
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1237,9 +1259,12 @@ Private Sub srStart_Exit(ByVal Cancel As MSForms.ReturnBoolean)
              [Venues[StartDate]].Rows(8).Value = .Value
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 
 Private Sub erhEnd_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With erhEnd
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1256,8 +1281,11 @@ Private Sub erhEnd_Exit(ByVal Cancel As MSForms.ReturnBoolean)
             End If
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 Private Sub ntEnd_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With ntEnd
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1274,8 +1302,11 @@ Private Sub ntEnd_Exit(ByVal Cancel As MSForms.ReturnBoolean)
             End If
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 Private Sub mhEnd_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With mhEnd
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1292,8 +1323,11 @@ Private Sub mhEnd_Exit(ByVal Cancel As MSForms.ReturnBoolean)
             End If
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 Private Sub bwEnd_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With bwEnd
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1310,8 +1344,11 @@ Private Sub bwEnd_Exit(ByVal Cancel As MSForms.ReturnBoolean)
             End If
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 Private Sub rsEnd_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With rsEnd
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1328,9 +1365,12 @@ Private Sub rsEnd_Exit(ByVal Cancel As MSForms.ReturnBoolean)
             End If
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 
 Private Sub b2End_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With b2End
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1347,9 +1387,12 @@ Private Sub b2End_Exit(ByVal Cancel As MSForms.ReturnBoolean)
             End If
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 
 Private Sub b3End_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With b3End
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1366,9 +1409,12 @@ Private Sub b3End_Exit(ByVal Cancel As MSForms.ReturnBoolean)
             End If
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 
 Private Sub srEnd_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Page = MultiPage1.Value
+    MultiPage1.Value = 0
     With srEnd
         If Not IsDate(.Value) And Not .Value = Blank Then
             MsgBox("Date must be in the format 'mm/dd/yyyy'", vbExclamation, "Date Error")
@@ -1385,6 +1431,7 @@ Private Sub srEnd_Exit(ByVal Cancel As MSForms.ReturnBoolean)
             End If
         End If
     End With
+    MultiPage1.Value = Page
 End Sub
 
 
