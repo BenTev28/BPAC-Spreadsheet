@@ -1046,7 +1046,9 @@ Private Sub summaryField_Change()
     ovwData = Worksheets("OverviewSheet").ListObjects("OverviewData")
     ovwData.ListColumns("Summary").DataBodyRange = summaryField.Value
 End Sub
-
+Private Sub taxIDNum_Change()
+    [OverviewData[Tax ID]].Value = taxIDNum.Value
+End Sub
 
 
 Private Sub techNotes_Change()
@@ -1093,6 +1095,7 @@ scheduleDate.Value = Date
     .Controls("contact2PhoneField").Value = [OverviewData[Secondary Contact Phone]].Value
     .Controls("contact2EmailField").Value = [OverviewData[Secondary Contact Email]].Value
     Website.Value = [OverviewData[URL]].Value
+    taxIDNum.Value = [OverviewData[Tax ID]].Value
     runTime.Value = [OverviewData[Run Time]].Value
     intermissionLength.Value = [OverviewData[Intermission]].Value
     summaryField.Value = [OverviewData[Summary]].Value
